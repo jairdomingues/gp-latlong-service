@@ -50,14 +50,7 @@ public class GeocodeController {
 	}
 	
 	private GeocodeResult callGoolgleAddress(String address) throws IOException{
-		OkHttpClient client = new OkHttpClient();
-		String encodedAddress = URLEncoder.encode(address, "UTF-8");
-		Request request = new Request.Builder().url("https://maps.googleapis.com/maps/api/geocode/json?address="
-				+ encodedAddress + "").get().build();
-		ResponseBody responseBody = client.newCall(request).execute().body();
-		ObjectMapper objectMapper = new ObjectMapper();
-		GeocodeResult result = objectMapper.readValue(responseBody.string(), GeocodeResult.class);
-		return result;
+		return null;
 	}
 	
 }

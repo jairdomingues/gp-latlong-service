@@ -47,7 +47,70 @@
 		  <artifactId>jackson-databind</artifactId>
 		 </dependency>
 
+		<!-- inicio dependencias cloud-foundry  -->
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+		    <version>1.2.2.RELEASE</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.sap.hana.cloud</groupId>
+		    <artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
+		    <version>1.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-spring-service-connector</artifactId>
+		    <version>1.2.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.db.jdbc</groupId>
+			<artifactId>ngdbc</artifactId>
+			<version>2.4.67</version>
+		</dependency>
+		
+<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+<dependency>
+    <groupId>com.zaxxer</groupId>
+    <artifactId>HikariCP</artifactId>
+    <version>2.2.5</version>
+</dependency>
+		
+		
+		<!-- fim dependencias cloud-foundry  -->
+
 	</dependencies>
+
+	<profiles>
+		 <profile>
+			<id>local</id>
+			<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+		        <activatedProperties>local</activatedProperties>
+		    </properties>
+            <dependencies>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+		            <scope>runtime</scope>
+				</dependency>		    
+            </dependencies>
+		</profile>
+		
+		<profile>
+			<id>cf</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+		        <activatedProperties>cf</activatedProperties>
+		    </properties>
+		    
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
